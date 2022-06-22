@@ -29,7 +29,7 @@ const operate = function(operator, x, y) {
         add(x, y)
     } else if (operator === 'subtract') {
         subtract(x, y)
-    } else if (operator === 'multtiply') {
+    } else if (operator === 'multiply') {
         multiply(x, y)
     } else if (operator === 'divide') {
         divide(x, y)
@@ -43,5 +43,3 @@ const operate = function(operator, x, y) {
         alert('Something has gone horribly wrong here ...')
     }
 }
-
-console.log(divide(5, 7))

@@ -1,0 +1,30 @@
+.calculator-body {
+    width: fit-content;
+    height: fit-content;
+}
+#display {
+    border: solid black thin;
+}
+button {
+    width: 100px;
+    height: 100px;
+}
+.options-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#clear, #backspace {
+    width: fit-content;
+    height: 75px;
+    font-size: 45px;
+}
+.num-keys {
+    display: flex;
+    flex-direction: column;
+}
+#top-row-nums, #middle-row-nums, #bottom-row-nums, #special-chars-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
