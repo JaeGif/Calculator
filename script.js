@@ -1,3 +1,52 @@
+let operator = ''
+
+// Operator DOM selections
+const multiplyButton = document.querySelector('#multiply')
+const divideButton = document.querySelector('#divide')
+const addButton = document.querySelector('#add')
+const subtractButton = document.querySelector('#subtract')
+const operateButton = document.querySelector('#operate')
+const decimalButton = document.querySelector('#decimal')
+// number DOM Selections
+const numberButtons = document.querySelectorAll('.num')
+/* const num1Button = document.querySelector('#one')
+const num2Button = document.querySelector('#two')
+const num3Button = document.querySelector('#three')
+const num4Button = document.querySelector('#four')
+const num5Button = document.querySelector('#five')
+const num6Button = document.querySelector('#six')
+const num7Button = document.querySelector('#seven')
+const num8Button = document.querySelector('#eight')
+const num9Button = document.querySelector('#nine')
+const num0Button = document.querySelector('#ten') */
+console.log(numberButtons)
+
+/* for (let i = 0; i <= numberButtons.length; i++){
+    numberButtons.addEventListener('click', () => {
+        console.log(e.target.id)
+    })
+} */
+
+// upper buttons DOM selectors
+const clearButton = document.querySelector('#clear')
+const backspaceButton = document.querySelector('#backspace')
+
+multiplyButton.addEventListener('click', () => {
+    operator = 'multiply'
+})
+divideButton.addEventListener('click', () => {
+    operator = 'divide'
+})
+addButton.addEventListener('click', () => {
+    operator = 'add'
+})
+subtractButton.addEventListener('click', () => {
+    operator = 'subtract'
+})
+operateButton.addEventListener('click', () => {
+    operate(operator, 3, 2)
+})
+
 // basic operations added 
 const multiply = function(x, y) {
     return (x * y)
@@ -40,6 +89,8 @@ const operate = function(operator, x, y) {
     } else if (operator === 'factorial') {
         factorial(x, y)
     } else {
-        alert('Something has gone horribly wrong here ...')
+        return
     }
+    console.log(operator)
+
 }
