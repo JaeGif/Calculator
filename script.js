@@ -1,11 +1,9 @@
 let operator = ''
 let equalClicked = false
-let inputArray = []
-let inputStringConcat = []
 let storageObject = {
     x: '',
     y: '',
-    currentOperator: operator,
+    answer: '',
 }
 
 // Operator DOM selections
@@ -68,44 +66,42 @@ const factorial = function (x) {
     } return fact
 }
 
+function resetObject() {
+    operator = ''
+    storageObject.x = storageObject.answer
+    storageObject.y = ''
+    console.log(storageObject)
+}
 const operate = function(operator, x, y) {
     equalClicked = false
-    let answer = ''
     if (operator === 'add') {
-        answer = add(x, y)
+        storageObject.answer = add(x, y)
+        resetObject()
     } else if (operator === 'subtract') {
-        answer = subtract(x, y)
-    } else if (operator === 'multiply') {
-        answer = multiply(x, y)
-    } else if (operator === 'divide') {
-        answer = divide(x, y)
-    }
-    console.log(answer)
+        storageObject.answer = subtract(x, y)
+        resetObject()
 
+    } else if (operator === 'multiply') {
+        storageObject.answer = multiply(x, y)
+        resetObject()
+
+    } else if (operator === 'divide') {
+        storageObject.answer = divide(x, y)
+        resetObject()
+
+    }
 }
 
 function storeNum(e) {
-    if (operator == ''){
+    // assign x
+    if (operator == '' && storageObject.answer == ''){
         storageObject.x += e.target.id
         console.log(storageObject)
-    } else if (operator != '' && equalClicked == false) {
+    } 
+    // assign y
+    if (operator != '' && equalClicked == false) {
         storageObject.y += e.target.id
         console.log(storageObject)
+
     }
 }
-/* function storeNum(e) {
-    if (inputArray.length < 2){
-        if (inputArray.length == 0) {
-            if (operator == ''){
-                inputStringConcat.push(e.target.id)
-                console.log(inputStringConcat)
-            } else {
-                storageObject.x = inputStringConcat.join('')
-                inputArray.push(x)
-                console.log(inputArray)
-            }
-        } else if (inputArray.length == 1) {
-            
-        }
-    }
-} */
