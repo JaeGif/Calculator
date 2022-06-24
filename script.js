@@ -13,6 +13,7 @@ const addButton = document.querySelector('#add')
 const subtractButton = document.querySelector('#subtract')
 const operateButton = document.querySelector('#operate')
 const decimalButton = document.querySelector('#decimal')
+const display = document.querySelector('h1')
 // number DOM Selections
 const numberButtons = document.querySelectorAll('.num')
 for (let i = 0; i < numberButtons.length; i++){
@@ -66,8 +67,9 @@ const factorial = function (x) {
     } return fact
 }
 
-function resetObject() {
+function updateObject() {
     operator = ''
+    display.textContent = storageObject.answer
     storageObject.x = storageObject.answer
     storageObject.y = ''
     console.log(storageObject)
@@ -76,32 +78,34 @@ const operate = function(operator, x, y) {
     equalClicked = false
     if (operator === 'add') {
         storageObject.answer = add(x, y)
-        resetObject()
+        updateObject()
     } else if (operator === 'subtract') {
         storageObject.answer = subtract(x, y)
-        resetObject()
+        updateObject()
 
     } else if (operator === 'multiply') {
         storageObject.answer = multiply(x, y)
-        resetObject()
+        updateObject()
 
     } else if (operator === 'divide') {
         storageObject.answer = divide(x, y)
-        resetObject()
-
+        updateObject()
     }
 }
-
+function clear() {
+    storageObject.x = ''
+    storageObject.y = ''
+    storageObject.answer = ''
+}
 function storeNum(e) {
     // assign x
     if (operator == '' && storageObject.answer == ''){
         storageObject.x += e.target.id
-        console.log(storageObject)
+        display.textContent = storageObject.x
     } 
     // assign y
     if (operator != '' && equalClicked == false) {
         storageObject.y += e.target.id
-        console.log(storageObject)
-
+        display.textContent = storageObject.y
     }
 }
