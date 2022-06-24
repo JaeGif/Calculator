@@ -25,6 +25,7 @@ const clearButton = document.querySelector('#clear')
 const backspaceButton = document.querySelector('#backspace')
 
 clearButton.addEventListener('click', clearObject)
+backspaceButton.addEventListener('click', backspace)
 
 multiplyButton.addEventListener('click', () => {
     checkPreviousOperator()
@@ -48,6 +49,7 @@ operateButton.addEventListener('click', () => {
 })
 
 function checkPreviousOperator() {
+    storageObject.x = display.textContent
     if (operator !== '') {
         operate(operator, Number(storageObject.x), Number(storageObject.y))
     }
@@ -57,7 +59,7 @@ function checkPreviousOperator() {
 const multiply = function(x, y) {
     return (x * y)
 }
-const divide = function(x, y) {     // set rounding decimals to 3 places as this calculator isn't exactly meant as a precision machine
+const divide = function(x, y) {     // set rounding decimals to 2 places as this calculator isn't exactly meant as a precision machine
     let ans = (x / y)
     if (ans % 1 === 0){
         return ans
@@ -70,18 +72,6 @@ const add = function(x, y) {
 }
 const subtract = function(x, y) {
     return (x - y)
-}
-const exponent = function(x, y) {
-    return Math.pow(x, y)
-}
-const eLog = function (x, y) {
-    return Math.exp(x, y)
-}
-const factorial = function (x) {
-    let fact = 1
-    for (let i = 1; i <= x; i++) {
-      fact *= i
-    } return fact
 }
 function clearObject() {
     operator = ''
@@ -123,15 +113,17 @@ function clear() {
     storageObject.y = ''
     storageObject.answer = ''
 }
+function backspace() {
+    display.textContent = display.textContent.slice(0, display.textContent.length - 1)
+    console.log('cut')
+}
 function storeNum(e) {
     // assign x
     if (operator == '' && storageObject.answer == ''){
-        storageObject.x += e.target.id
-        display.textContent = storageObject.x
+        display.textContent += e.target.id
     } 
     // assign y
     if (operator != '' && equalClicked == false) {
-        storageObject.y += e.target.id
-        display.textContent = storageObject.y
+        display.textContent += e.target.id
     } 
 }
