@@ -1,4 +1,12 @@
 let operator = ''
+let equalClicked = false
+let inputArray = []
+let inputStringConcat = []
+let storageObject = {
+    x: '',
+    y: '',
+    currentOperator: operator,
+}
 
 // Operator DOM selections
 const multiplyButton = document.querySelector('#multiply')
@@ -9,23 +17,9 @@ const operateButton = document.querySelector('#operate')
 const decimalButton = document.querySelector('#decimal')
 // number DOM Selections
 const numberButtons = document.querySelectorAll('.num')
-/* const num1Button = document.querySelector('#one')
-const num2Button = document.querySelector('#two')
-const num3Button = document.querySelector('#three')
-const num4Button = document.querySelector('#four')
-const num5Button = document.querySelector('#five')
-const num6Button = document.querySelector('#six')
-const num7Button = document.querySelector('#seven')
-const num8Button = document.querySelector('#eight')
-const num9Button = document.querySelector('#nine')
-const num0Button = document.querySelector('#ten') */
-console.log(numberButtons)
-
-/* for (let i = 0; i <= numberButtons.length; i++){
-    numberButtons.addEventListener('click', () => {
-        console.log(e.target.id)
-    })
-} */
+for (let i = 0; i < numberButtons.length; i++){
+    numberButtons[i].addEventListener('click', storeNum)
+}
 
 // upper buttons DOM selectors
 const clearButton = document.querySelector('#clear')
@@ -44,7 +38,8 @@ subtractButton.addEventListener('click', () => {
     operator = 'subtract'
 })
 operateButton.addEventListener('click', () => {
-    operate(operator, 3, 2)
+    equalClicked = true
+    operate(operator, Number(storageObject.x), Number(storageObject.y))
 })
 
 // basic operations added 
@@ -74,23 +69,43 @@ const factorial = function (x) {
 }
 
 const operate = function(operator, x, y) {
+    equalClicked = false
+    let answer = ''
     if (operator === 'add') {
-        add(x, y)
+        answer = add(x, y)
     } else if (operator === 'subtract') {
-        subtract(x, y)
+        answer = subtract(x, y)
     } else if (operator === 'multiply') {
-        multiply(x, y)
+        answer = multiply(x, y)
     } else if (operator === 'divide') {
-        divide(x, y)
-    } else if (operator === 'exponent') {
-        exponent(x, y)
-    } else if (operator === 'e') {
-        eLog(x, y)
-    } else if (operator === 'factorial') {
-        factorial(x, y)
-    } else {
-        return
+        answer = divide(x, y)
     }
-    console.log(operator)
+    console.log(answer)
 
 }
+
+function storeNum(e) {
+    if (operator == ''){
+        storageObject.x += e.target.id
+        console.log(storageObject)
+    } else if (operator != '' && equalClicked == false) {
+        storageObject.y += e.target.id
+        console.log(storageObject)
+    }
+}
+/* function storeNum(e) {
+    if (inputArray.length < 2){
+        if (inputArray.length == 0) {
+            if (operator == ''){
+                inputStringConcat.push(e.target.id)
+                console.log(inputStringConcat)
+            } else {
+                storageObject.x = inputStringConcat.join('')
+                inputArray.push(x)
+                console.log(inputArray)
+            }
+        } else if (inputArray.length == 1) {
+            
+        }
+    }
+} */
