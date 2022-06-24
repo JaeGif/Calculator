@@ -24,16 +24,22 @@ for (let i = 0; i < numberButtons.length; i++){
 const clearButton = document.querySelector('#clear')
 const backspaceButton = document.querySelector('#backspace')
 
+clearButton.addEventListener('click', clearObject)
+
 multiplyButton.addEventListener('click', () => {
+    checkPreviousOperator()
     operator = 'multiply'
 })
 divideButton.addEventListener('click', () => {
+    checkPreviousOperator()
     operator = 'divide'
 })
 addButton.addEventListener('click', () => {
+    checkPreviousOperator()
     operator = 'add'
 })
 subtractButton.addEventListener('click', () => {
+    checkPreviousOperator()
     operator = 'subtract'
 })
 operateButton.addEventListener('click', () => {
@@ -41,12 +47,23 @@ operateButton.addEventListener('click', () => {
     operate(operator, Number(storageObject.x), Number(storageObject.y))
 })
 
+function checkPreviousOperator() {
+    if (operator !== '') {
+        operate(operator, Number(storageObject.x), Number(storageObject.y))
+    }
+
+}
 // basic operations added 
 const multiply = function(x, y) {
     return (x * y)
 }
 const divide = function(x, y) {     // set rounding decimals to 3 places as this calculator isn't exactly meant as a precision machine
-    return (x / y).toFixed(3)
+    let ans = (x / y)
+    if (ans % 1 === 0){
+        return ans
+    } else {
+        return ans.toFixed(2)
+    }
 }
 const add = function(x, y) {
     return (x + y)
@@ -66,7 +83,16 @@ const factorial = function (x) {
       fact *= i
     } return fact
 }
-
+function clearObject() {
+    operator = ''
+    storageObject = {
+        x: '',
+        y: '',
+        answer: '',
+    }
+    display.textContent = storageObject.answer
+    console.log(storageObject)
+}
 function updateObject() {
     operator = ''
     display.textContent = storageObject.answer
@@ -107,5 +133,5 @@ function storeNum(e) {
     if (operator != '' && equalClicked == false) {
         storageObject.y += e.target.id
         display.textContent = storageObject.y
-    }
+    } 
 }
