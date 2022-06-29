@@ -7,11 +7,21 @@ body {
 .calculator-body {
     width: fit-content;
     height: fit-content;
+    border: 2px solid black;
+    padding: 0px 2% 2% 2%;
+    background-color: bisque;
+    border-radius: 15px;
+    text-align: center;
+}
+p {
+    font-size: xx-large;
 }
 #display {
     display: block;
     border: solid black thin;
     height: 90px;
+    border-radius: 5px;
+    background-color: white;
 }
 h1 {
     font-size: 35px;
@@ -42,4 +52,23 @@ button {
 }
 #decimal {
     font-size: xx-large;
+}
+.num {
+    background-color: hotpink;
+    border: 1px solid black;
+    font-size: xx-large;
+    color: rgb(0, 0, 145);
+}
+.num:active {
+    background-color: aqua;
+}
+.operations {
+    background-color: rgb(0, 0, 145);
+    color: hotpink;
+    font-size: xx-large;
+    border: thin solid black;
+}
+.operations:active {
+    background-color: hotpink;
+    color: rgb(0, 0, 145);
 }
